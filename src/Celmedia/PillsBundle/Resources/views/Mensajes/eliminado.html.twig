@@ -1,0 +1,40 @@
+{%   extends("CelmediaPillsBundle::layout.html.twig") %}
+
+{% block title %}Pill eliminado exitosamente{% endblock %}
+
+{% block contenido %}
+
+<div class="row-fluid">
+    <div class="span12 " style="margin-left:0px;background-color: #F89E00;">
+        <div class="container" style="text-align:center;">
+            <div class="space"></div>
+            <h1 class="title_white">PILL BRIEF ELIMINADO</h1>
+            <img src="{{ asset('img/icon_eliminar.png') }}" alt="" />
+            <h4 class="subtitle_white" >Tu Pill Brief ha sido eliminado correctamente.</h4>
+            <div class="space"></div>
+            <div class="row-fluid">
+                <div class="span4 offset4 btn btn-default btn_guardar">
+                <a style="color: #fff;text-decoration: none;" href="{{  path('mis_pills') }}">                    
+                    Listo
+                </a>
+                </div>
+            </div>
+            <div class="space"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block js %}
+{{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+
+            $('.lateral').height($('.menuizq').height());
+
+            $('.lateral').addClass('lateralnaranja');
+        });
+
+    </script>
+{% endblock %}

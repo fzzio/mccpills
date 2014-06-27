@@ -1,0 +1,617 @@
+{%   extends("CelmediaPillsBundle::layout.html.twig") %}
+
+{%   block js  %}
+{{ parent() }}
+
+
+<style  type="text/css" >
+
+
+.fileUpload {
+    position:relative;
+    overflow:hidden;
+    width:119px;
+    height:22px;
+    -moz-border-bottom-colors:none;
+    -moz-border-left-colors:none;
+    -moz-border-right-colors:none;
+    -moz-border-top-colors:none;
+    background-color:#F5F5F5;
+    background-repeat:repeat-x;
+    border-image:none;
+    box-shadow:0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
+    color:#333;
+    cursor:pointer;
+    display:inline-block;
+    font-size:14px;
+    line-height:20px;
+    text-align:center;
+    text-shadow:0 1px 1px rgba(255,255,255,0.75);
+    vertical-align:middle;
+    border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) #B3B3B3;
+    border-style:solid;
+    border-width:1px;
+    margin:0 10px 10px;
+    padding:4px 12px;
+}
+
+.fileUpload input.upload {
+    position:absolute;
+    top:0;
+    right:0;
+    font-size:20px;
+    cursor:pointer;
+    opacity:0;
+    filter:alpha(opacity=0);
+    margin:0;
+    padding:0;
+}
+
+.colorpicker input {
+    width:inherit!important;
+}
+
+.control {
+    width:90px;
+}
+
+.clear {
+    clear:both;
+}
+
+.colorbox_input {
+    width:20px!important;
+    height:20px!important;
+    border-radius:0!important;
+}
+
+.font-size-select {
+    width:80px;
+    height:30px;
+    border-radius:0;
+}
+
+.font-family-select {
+    width:150px;
+    height:30px;
+    border-radius:0;
+}
+
+.font-family-select option {
+    font-size:18px;
+}
+
+.btn-toolbar {
+    margin-top:0;
+}
+
+.btn-style {
+    -moz-border-bottom-colors:none;
+    -moz-border-left-colors:none;
+    -moz-border-right-colors:none;
+    -moz-border-top-colors:none;
+    background-color:#F5F5F5;
+    background-image:linear-gradient(tobottom,#FFFFFF,#E6E6E6);
+    background-repeat:repeat-x;
+    border-image:none;
+    border-radius:4px;
+    box-shadow:0 1px 0 rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.05);
+    color:#333;
+    cursor:pointer;
+    display:inline-block;
+    font-size:14px;
+    line-height:20px;
+    margin-bottom:0;
+    text-align:center;
+    text-shadow:0 1px 1px rgba(255,255,255,0.75);
+    vertical-align:middle;
+    border-color:rgba(0,0,0,0.1) rgba(0,0,0,0.1) #B3B3B3;
+    border-style:solid;
+    border-width:1px;
+    padding:4px 12px;
+}
+
+.resize {
+    position:absolute;
+    border-color:#000;
+    border-style:solid;
+    border-width:1px;
+}
+
+.ui-resizable-se {
+    width:7px;
+    height:7px;
+    background-color:#D0F2F0;
+    bottom:0;
+    right:0;
+    border-color:#45C1B1;
+    border-style:solid;
+    border-width:1px;
+}
+
+.ui-resizable-sw {
+    width:7px;
+    height:7px;
+    background-color:#D0F2F0;
+    bottom:0;
+    left:0;
+    border-color:#45C1B1;
+    border-style:solid;
+    border-width:1px;
+}
+
+.ui-resizable-nw {
+    width:7px;
+    height:7px;
+    background-color:#D0F2F0;
+    top:0;
+    left:0;
+    border-color:#45C1B1;
+    border-style:solid;
+    border-width:1px;
+}
+
+.ui-resizable-ne {
+    width:7px;
+    height:7px;
+    background-color:#D0F2F0;
+    top:0;
+    right:0;
+    border-color:#45C1B1;
+    border-style:solid;
+    border-width:1px;
+}
+
+.control label,.control input {
+    float:left;
+}
+
+</style>
+
+<link  rel="stylesheet" media="screen" type="text/css" href="{{  asset('colorpicker/css/colorpicker.css') }}" />
+<script type="text/javascript" src="{{  asset('colorpicker/js/colorpicker.js') }}"></script>
+<script type="text/javascript" src="{{  asset('js/html2canvas.js') }}"></script>
+
+
+
+
+<script type="text/javascript" >
+
+
+function generarPillShowNext(){
+
+    $.blockUI({ message: '<p> Creando Pill...</p>' });
+    $('#texto_pill').resizable('destroy');
+    $('#texto_pill').resizable();
+    html2canvas([document.getElementById('canvas')], {
+        onrendered: function(canvas) {
+            var data = canvas.toDataURL('image/png');
+            $.ajax({
+                type: "POST",
+                url: "{{  path('crear_pill_imagen') }}",
+                data: {
+                    imgBase64: data
+                }
+            }).done(function(o) {
+                console.log('saved');
+                $.unblockUI();
+                showPaso2();
+            });
+        }});
+}
+
+
+
+
+function showPaso2() {
+    $("#CrearPillPaso1").hide();
+    $("#CrearPillPaso2").show();
+    $("#crearPrevBtn").attr('onclick', "showPaso1()");
+    $("#crearNextBtn").attr('onclick', "$('#formCrearPill').submit()");
+}
+
+function showPaso1() {
+    $("#CrearPillPaso1").show();
+    $("#CrearPillPaso2").hide();
+    $("#crearNextBtn").attr("onclick", "showPaso1();");
+    $("#crearPrevBtn").attr("onclick", "generarPillShowNext();");
+}
+
+
+
+
+
+
+
+
+
+function setBold(element){
+    $(element).toggleClass("active");
+    setStyle();
+}
+function setItalic(element){
+    $(element).toggleClass("active");
+    setStyle();
+}
+function setUnderline(element){
+    $(element).toggleClass("active");
+    setStyle();
+}
+
+function setLeft(element){
+    $(".btn-alinear").removeClass("active");
+    $(element).toggleClass("active");
+    setStyle();
+}
+
+function setRight(element){
+    $(".btn-alinear").removeClass("active");
+    $(element).toggleClass("active");
+    setStyle();
+}
+function setCenter(element){
+    $(".btn-alinear").removeClass("active");
+    $(element).toggleClass("active");
+    setStyle();
+}
+function setJustify(element){
+    $(".btn-alinear").removeClass("active");
+    $(element).toggleClass("active");
+    setStyle();
+}
+
+
+function actualizarTexto() {
+    $("#texto_pill").text($("#form_descripcion").val());
+}
+
+function mostrarControles(){
+    $('#texto_pill').resizable('destroy');
+    $("#texto_pill").resizable({handles: 'ne, se, sw, nw'});
+    $("#texto_pill").draggable();
+}
+
+function clearControles(){
+    $('#texto_pill').resizable('destroy');
+}
+
+
+function setStyle(){
+
+    if ($("#bold").hasClass("active")){
+        $("#texto_pill").css("font-weight", "bold");
+    }
+    else{
+        $("#texto_pill").css("font-weight", "normal");
+    }
+
+    if ($("#italic").hasClass("active")){
+        $("#texto_pill").css("font-style", "italic");
+    }
+    else{
+        $("#texto_pill").css("font-style", "normal");
+    }
+
+    if ($("#underline").hasClass("active")){
+        $("#texto_pill").css("text-decoration", "underline");
+    }
+    else{
+        $("#texto_pill").css("text-decoration", "none");
+    }
+
+    if ($("#left").hasClass("active")){
+        $("#texto_pill").css("text-align", "left");
+    }
+
+    if ($("#right").hasClass("active")){
+        $("#texto_pill").css("text-align", "right");
+    }
+
+    if ($("#center").hasClass("active")){
+        $("#texto_pill").css("text-align", "center");
+    }
+
+
+    if ($("#justify").hasClass("active")){
+        $("#texto_pill").css("text-align", "justify");
+    }
+
+
+
+    $("#texto_pill").css("font-size", $("#size").val() + "px");
+    $("#texto_pill").css("font-family", $("#fuente option:selected").css("font-family"));
+}
+
+
+
+
+
+
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#canvas').css('background-image', "url(" + e.target.result + " )");
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+
+
+$(document).ready(function(){
+
+    $('#canvas_image').hide();
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
+    $("#texto_pill").blur(function(){
+        $('#texto_pill').resizable('destroy');
+    });
+    $("#form_tags").tagit({
+        availableTags: [
+        {% for tag in tags %}
+        "{{  tag.nombre }}"   {% if not loop.last %}, {% endif %}
+        {% endfor %}
+        ]
+    });
+    $("#form_equipodetrabajo").tagit({
+        availableTags: [
+        {% for usuario in usuarios %}
+
+        {% if  app.user.username == usuario.email %}
+
+        {% else %}
+        "{{  usuario.email }}"   {% if not loop.last %}, {% endif %}
+        {% endif %}
+        {% endfor %}
+        ]
+    });
+    $("#form_equipodetrabajo").hide();
+    $('#colorFondo').ColorPicker({
+        color: '#000000',
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(500);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(500);
+            return false;
+        },
+        onChange: function (hsb, hex, rgb) {
+            $('#canvas').css('background-image', 'none');
+            $('#canvas').css('backgroundColor', '#' + hex);
+            $('#colorFondo').css('backgroundColor', '#' + hex);
+        }
+    });
+    $('#colorTextoInput').ColorPicker({
+        color: '#000000',
+        onShow: function (colpkr) {
+            $(colpkr).fadeIn(500);
+            return false;
+        },
+        onHide: function (colpkr) {
+            $(colpkr).fadeOut(500);
+            return false;
+        },
+        onChange: function (hsb, hex, rgb) {
+            $('#texto_pill').css('color', '#' + hex);
+            $('#colorTextoInput').css('backgroundColor', '#' + hex);
+        }
+    });
+    $("#texto_pill").resizable({handles: 'ne, se, sw, nw'});
+    $("#texto_pill").draggable();
+    $("#texto_pill").text($("#form_descripcion").val());
+});</script>
+
+{%   endblock  %}
+
+{% block contenido %}
+<div class="row-fluid">
+
+
+    <div class="span12">
+        <div class="container-fluid">
+
+            <h1 class="title">Crea tu Pill</h1>
+            <p style="padding-left: 20px;font-size: 17px;color: #8A8A8A;padding-bottom: 10px;">Personaliza tus textos y elige un color de fondo.</p>
+            <div class="span1 hidden-phone" ></div>
+            <div class="span11" style="margin-left:0px;">
+
+                <div class="row-fluid">
+                    <div class="span11">
+                        <form id="formCrearPill" class="form-horizontal" action="{{  path('crear_pill') }}" method="post" {{ form_enctype(form) }}>
+
+
+                            <div  id="CrearPillPaso1" >
+
+                                <div class="row-fluid">
+                                    <div class="span2" >
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <a id="bold"  onclick="setBold(this);" class="btn btn-style" href="#"><i class="icon-bold" ></i></a>
+                                                <a id="italic" onclick="setItalic(this);" class="btn btn-style" href="#"><i class="icon-italic" ></i></a>
+                                                <a id="underline" onclick="setUnderline(this);" class="btn btn-style" href="#"><i class="icon-text-width" ></i></a>                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="span2" >
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <a id="left" onclick="setLeft(this);" class="btn  btn-style  btn-alinear" href="#"><i class="icon-align-left"></i></a>
+                                                <a id="center" onclick="setRight(this);" class="btn  btn-style btn-alinear" href="#"><i class="icon-align-center"></i></a>
+                                                <a id="right" onclick="setCenter(this);" class="btn  btn-style btn-alinear" href="#"><i class="icon-align-right"></i></a>
+                                                <a id="justify" onclick="setJustify(this);" class="btn  btn-style btn-alinear" href="#"><i class="icon-align-justify"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="span2" >
+                                        <select id="fuente" class="font-family-select"  onchange=" setStyle();" >
+                                            <option  style="font-family: Arial, Helvetica, sans-serif;" > Arial </option>
+                                            <option  style="font-family: 'Arial Black', Gadget, sans-serif;" > Arial Black</option>
+                                            <option  style="font-family: 'Bookman Old Style', serif;" > 'Bookman Old Style'</option>
+                                            <option  style="font-family: 'Comic Sans MS', cursive;" > 'Comic Sans MS'</option>
+                                            <option  style="font-family: Courier, monospace;" > Courier, monospace;</option>
+                                            <option  style="font-family: 'Courier New', Courier, monospace;" > 'Courier New'</option>
+                                            <option  style="font-family: Garamond, serif;" > Garamond, </option>
+                                            <option  style="font-family: Georgia, serif;" > Georgia </option>
+                                            <option  style="font-family: Impact, Charcoal, sans-serif;" > Impact, Charcoal, </option>
+                                            <option  style="font-family: 'Lucida Console', Monaco, monospace;" > 'Lucida Console', Monaco, monospace</option>
+                                            <option  style="font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;" > 'Lucida Sans Unicode'</option>
+                                            <option  style="font-family: 'MS Sans Serif', Geneva, sans-serif;" > 'MS Sans Serif', Geneva, </option>
+                                            <option  style="font-family: 'MS Serif', 'New York', sans-serif;" > 'MS Serif', 'New York', </option>
+                                            <option  style="font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;" > 'Palatino Linotype', 'Book Antiqua', Palatino, serif;</option>
+                                            <option  style="font-family: Symbol, sans-serif;" > Symbol</option>
+                                            <option  style="font-family: Tahoma, Geneva, sans-serif;" > Tahoma, Geneva, </option>
+                                            <option  style="font-family: 'Times New Roman', Times, serif;" > 'Times New Roman', Times,</option>
+                                            <option  style="font-family: 'Trebuchet MS', Helvetica, sans-serif;" > 'Trebuchet MS', Helvetica</option>
+                                            <option  style="font-family: Verdana, Geneva, sans-serif;" > Verdana, Geneva</option>
+                                            <option  style="font-family: Webdings, sans-serif;" > Webdings,</option>
+                                            <option  style="font-family: Wingdings, 'Zapf Dingbats', sans-serif;" > Wingdings, 'Zapf Dingbats'</option>
+                                        </select>
+                                    </div>
+                                    <div class="span1" >
+
+                                        <select  id="size" class="font-size-select" onchange=" setStyle();" >
+                                            {% for i in 6..9 %}
+                                            <option value="{{i}}"    >{{i}} px</option>
+                                            {% endfor %}
+
+                                            {% for i in 10..34 %}
+                                            {% if  i is divisibleby(2) %}
+                                            <option value="{{i}}"      {% if i == 14  %}  selected="selected" {% endif %}   >{{i}} px</option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+
+                                    </div> 
+
+                                    <div class="span1" >
+                                        <div class="control">              
+                                            <label style="padding-right:3px;" for="colorFondo">Fondo</label>
+                                            <input id="colorFondo" class="colorbox_input" type="text" style="height:20px;background-color:black;"  />
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="span1" >
+                                        <div class="control">        
+                                            <label style="padding-right:3px;" for="colorTexto">Fuente</label>
+                                            <input id="colorTextoInput" class="colorbox_input" type="text" style="height:20px;" />
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div class="span2" >
+
+
+                                        <div class="fileUpload btn ">
+                                            <span  style="color:black;" >  <i class="icon-picture"></i>  Imagen fondo</span>
+                                            <input type="file"  id="imgInp" class="upload" />
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row-fluid">
+                                    <div class="control-group">
+                                        {{ form_widget(form.descripcion, { 'attr': {'class': "span12 input_pills input_pills_full", 'placeholder': 'Descripción' , 'onkeyup' : 'actualizarTexto()' } }) }}
+                                        {{ form_errors(form.descripcion) }}
+                                    </div>
+                                </div>
+
+
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div  id="canvas" style="position: relative; height: 420px; width: 420px; background-color: black;  background-size: 100% 100%;" >          
+                                            <p  id="texto_pill" onclick="mostrarControles();"  style="cursor:pointer;color:white;" >Contenido del pill</p>
+                                        </div>   
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        {{ form_widget(form.tags, { 'attr': {'class': "input_pills input_pills_full" , 'placeholder': 'Tags'} }) }}
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <div class="controls">
+                                        {{ form_widget(form.categorias, { 'attr': {'class': "input_pills"} }) }}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div  id="CrearPillPaso2"  style="display: none;" >
+
+                                <div class="control-group">
+                                    <h4>Entendimiento</h4>
+                                    <label>El punto de vista o interpretación de por qué el Pill es el punto de partida.</label>
+                                    <div class="controls">
+                                        {{ form_widget(form.entendimiento, { 'attr': {'class': "span12 texto-area", 'rows': 4} }) }}
+
+                                    </div>
+                                </div>
+
+
+                                <div class="control-group">
+                                    <h4>Briefing</h4>
+                                    <label>Cómo el Truth Pill y el Entedimiento se convierte en una propuesta para la marca.</label>
+                                    <div class="controls">
+                                        {{ form_widget(form.briefing, { 'attr': {'class': "span12 texto-area", 'rows': 4} }) }}
+
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <h4>Equipo de trabajo</h4>
+                                    <label>Separa los correos electronicos con comas y sin espacios.</label>
+                                    <div class="controls">
+                                        {{ form_widget(form.equipodetrabajo, { 'attr': {'class': "span12 texto-area tags_correos"} }) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="row-fluid">                    
+                                <button id="crearPrevBtn" class="btn-pills btn-pills-back pull-left"  onclick="showPaso1();" type="button">Regresar</button>
+                                <button id="crearNextBtn" class="btn-pills btn-pills-next pull-right"  onclick="generarPillShowNext();" type="button">Siguiente</button> 
+                            </div>
+
+                            {{ form_widget(form._token) }}
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row-fluid">
+                <hr>
+                <div class="span12" style="text-align:center;height:60px;">
+                    <img src="{{ asset('img/breadcrumbs.jpg' ) }}" alt="" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

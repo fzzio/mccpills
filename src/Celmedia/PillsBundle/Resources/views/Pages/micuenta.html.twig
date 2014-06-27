@@ -1,0 +1,70 @@
+{%   extends("CelmediaPillsBundle::layout.html.twig") %}
+
+{% block contenido %}
+<div class="row-fluid">
+    <div class="span12" style="margin-left:0px;">
+        <div class="container-fluid">
+            <h1 class="title">Mi Cuenta</h1>
+            <h4 class="subtitle" >Bienvenido de nuevo, Pablo</h4>
+            <div class="row-fluid row-pills">
+                <div class="span8 offset2" >
+                	<h4 class="subtitle_info">Informaci&oacute;n de la cuenta</h4>
+
+                	<form class="form-horizontal" id="formulario" action="" method="post">
+
+
+                        <div class="control-group">
+
+                            <div class="controls-row">
+
+                              <input class="span12 input_alto" type="password" id="inputPass" maxlength="100" name="inputPass" placeholder="Contraseña Actual">
+
+                              
+
+                            </div>
+
+                        </div>
+
+                        <div class="control-group">
+
+                            <div class="controls-row">
+
+                              <input class="span6 input_alto" type="password" id="inputNewPass" maxlength="100" name="inputNewPass" placeholder="Contraseña Nueva">
+
+                              <input class="span6 input_alto" type="password" id="inputConfirm" name="inputConfirm" placeholder="Confirmar Contraseña">
+
+                            </div>
+
+                        </div>
+
+                        <div class="control-group">
+
+                            <div class="controls-row">
+
+                              <input class="span6 input_alto" type="text" id="inputNombre" maxlength="100" name="inputNombre" placeholder="Nombre">
+
+                              <input class="span6 input_alto" type="text" id="inputApellido" name="inputApellido" placeholder="Apellido">
+
+                            </div>
+
+                        </div>
+
+                        <div class="control-group">
+
+                            <div class="controls-row">
+
+                              <div class="span5 btn btn-default btn_cancelar">Cancelar</div>
+                              <div class="span7 btn btn-default btn_guardar">Guardar Cambios</div>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

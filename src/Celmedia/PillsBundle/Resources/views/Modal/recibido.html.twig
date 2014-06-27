@@ -1,0 +1,43 @@
+
+<div class="modal-body bfcontenedor">
+   <a class="close cerrar" data-dismiss="modal">
+   <i class="icono icono-cerrar"></i>
+   </a>
+   <div class="row-fluid">
+      <!-- text-center -->
+      <div class="span6 ">
+         <!-- bfimagen -->
+         <img src="{{ asset('uploads/pills/'  ~ pill.imagen ) }}"     />		
+      </div>
+
+      <div class="span6 text-left spanfrief" style="margin-left:0px;">
+         <span class="brtitular">Entendimiento</span>
+         <p class="brtexto">
+           {{  brief.entendimiento }}
+         </p>
+         <span class="brtitular">Briefing</span>
+         <p class="brtexto">
+           {{  brief.briefing }}
+         </p>
+         <hr>
+         <span class="brtitular">Personas Compartidas</span>
+           <ul style="list-style:none;margin: 0;">            
+           {% for enviado in enviados %}
+               <li class="brtexto">
+                 {{  enviado.usuario.email }}
+               </li>
+           {% endfor %}
+           </ul>
+           <br />
+         <div class="row-fluid">
+            <div class="span12"   id="votaciones" >
+
+            
+           {{ render(controller('CelmediaPillsBundle:Pill:mostrarVotacion', {'idbrief': brief.id }    )) }}
+            </div>
+         </div>
+         <br />		
+      </div>
+
+   </div>
+</div>

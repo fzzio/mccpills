@@ -1,0 +1,260 @@
+{%   extends("CelmediaPillsBundle::layout.html.twig") %}
+
+{% block contenido %}
+
+<div class="row-fluid">
+    <div class="span12" style="margin-left:0px;">
+            <div class="row-fluid">
+                <div class="space"></div>
+                <div class="span9 offset1">
+
+                    <div class="tabbable">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab" class="link_color">Tags</a></li>
+                            <li class="rayita"><a href="#tab2" data-toggle="tab" class="link_color ">Categorias</a></li>
+                            <li class="rayita"><a href="#tab3" data-toggle="tab" class="link_color ">Estudios</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+                                
+
+                            {% for row in tags | batch(4) %}                                
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                {% for tag in row %}
+                                        <div class="span3">
+                                            <p class="texto_tags" >  <a href="{{  path('mostrar_resultados_busquedad_tag', {idtag: tag.id}) }}">
+                                                {{  tag.nombre }}
+                                            </a> </p>
+                                        </div>                                                                        
+                                {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                              
+                            </div>
+                            <div class="tab-pane" id="tab2">
+                               
+
+                            {% for row in categorias | batch(4) %}                                
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                {% for cat in row %}
+                                        <div class="span3">
+                                            <p class="texto_tags" >
+                                                    <a href="{{  path('mostrar_resultados_busquedad_categoria' , {  idcategoria:cat.id }) }}">                                                        
+                                                    {{  cat.nombre }}
+                                                    </a>
+                                            </p>
+                                        </div>                                                                        
+                                {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                            
+                                
+                            </div>
+                            
+                            
+                            <div class="tab-pane" id="tab3">
+                                <!-- <a href="{{ path('estudio') }}"> -->
+                                        {% for row in estudio | batch(4) %}
+                                    <div class="estudio texto_estudio">
+                                        {% for est in row %}
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p><a href="{{  path('mostrar_resultados_busquedad_estudio' , {  idestudio:est.id }) }}">                                                        
+                                                    {{  est.nombre }}
+                                                    </a></p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">{{  est.fechaCreacion|date('Y-m-d')  }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                        {% endfor %}
+                                <!-- </a> -->
+                            </div>
+
+                            <!-- <div class="tab-pane" id="tab3">
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas. </p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+                                
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>    
+
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+
+                                <a href="{{ path('estudio') }}">
+                                    <div class="estudio texto_estudio">
+                                        <div class="row-fluid">
+                                            <div class="span12">
+                                                <div class="span9">
+                                                    <p>Nombre del estudio Lorem Ipsum es simplemente el texto de relleno de las imprentas.</p>
+                                                </div>
+                                                <div class="span2 offset1 rayita_date">
+                                                    <p class="date">9/18/2013</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </a>
+                                <div class="space"></div>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            
+
+
+        
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+Celmedia\PillsBundle\Entity\Favorito:
+    type: entity
+    table: favorito
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        fechacreacion:
+            type: datetime
+            nullable: false
+            column: fechaCreacion
+    manyToOne:
+        usuario:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                usuario:
+                    referencedColumnName: id
+            orphanRemoval: false
+        pill:
+            targetEntity: Pill
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pill:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

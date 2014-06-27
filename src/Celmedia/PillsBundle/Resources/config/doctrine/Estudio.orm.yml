@@ -1,0 +1,41 @@
+Celmedia\PillsBundle\Entity\Estudio:
+    type: entity
+    table: estudio
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nombre:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false
+        descripcion:
+            type: string
+            length: 250
+            fixed: false
+            nullable: false
+        fechaCreacion:
+            type: datetime
+            nullable: false
+        estado:
+            type: integer
+            unsigned: false
+            nullable: false
+
+    manyToMany:
+      categorias:
+        targetEntity: Categoria
+        joinTable:
+          name: estudios_categorias
+          joinColumns:
+            categoria_id:
+              referencedColumnName: id
+          inverseJoinColumns:
+            categorias_id:
+              referencedColumnName: id
+    lifecycleCallbacks: {  }

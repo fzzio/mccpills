@@ -1,0 +1,305 @@
+celmedia_pills_homepage:
+    pattern:  /home
+    defaults: { _controller: CelmediaPillsBundle:Default:index }
+
+celmedia_pills_loginpage:
+    pattern:  /login
+    defaults: { _controller: CelmediaPillsBundle:Default:login }
+
+celmedia_pills_loginpage:
+    pattern:  /
+    defaults: { _controller: CelmediaPillsBundle:Default:login }
+
+app_home:
+    pattern:  /app/truthpills
+    defaults: { _controller: CelmediaPillsBundle:Default:truthpills }
+
+mis_pills:
+    pattern:  /app/mis_pills
+    defaults: { _controller: CelmediaPillsBundle:Default:mispillbrief }
+
+mis_pills_favoritos:
+    pattern:  /app/favoritos
+    defaults: { _controller: CelmediaPillsBundle:Default:misfavoritos }
+
+pills_recibidos:
+    pattern:  /app/recibidos
+    defaults: { _controller: CelmediaPillsBundle:Default:recibidos }
+
+ver_detalle_pill_por_id:
+    pattern:  /app/mostrar/{idpill}
+    defaults: { _controller: CelmediaPillsBundle:Pill:verPill }
+
+ver_pillbriefXid:
+    pattern:  /app/verpillbrief/{idpillbrief}
+    defaults: { _controller: CelmediaPillsBundle:Pill:verpillbrief }
+
+verpillbriefrecibidoXid:
+    pattern:  /app/ver_recibido/{idpill}
+    defaults: { _controller: CelmediaPillsBundle:Default:verpillbriefrecibido }
+
+
+mi_cuenta_pill:
+    pattern:  /app/about
+    defaults: { _controller: CelmediaPillsBundle:Default:miCuentaPill }
+
+celmedia_pills_mensaje:
+    pattern:  /app/mensaje
+    defaults: { _controller: CelmediaPillsBundle:Default:mensaje }
+
+pillbrief_eliminado:
+    pattern:  /app/pillbriefEliminado
+    defaults: { _controller: CelmediaPillsBundle:Default:pillbriefEliminado }
+
+pillbrief_creado:
+    pattern:  /app/pillbriefCreado
+    defaults: { _controller: CelmediaPillsBundle:Default:pillbriefCreado }
+
+resultados_pill:
+    pattern:  /app/resultados
+    defaults: { _controller: CelmediaPillsBundle:Default:resultados }
+
+estudio:
+    pattern:  /app/estudio
+    defaults: { _controller: CelmediaPillsBundle:Default:estudio }
+
+cambio_exitoso:
+    pattern:  /app/cambioExitoso
+    defaults: { _controller: CelmediaPillsBundle:Default:cambioExitoso }
+
+registro_exitoso:
+    pattern:  /registroExitoso
+    defaults: { _controller: CelmediaPillsBundle:Default:registroExitoso }
+
+error:
+    pattern:  /error
+    defaults: { _controller: CelmediaPillsBundle:Default:error }
+
+
+
+
+buscar:
+    pattern:   /buscar
+    defaults:  { _controller: CelmediaPillsBundle:Default:buscar }
+
+
+#ajax
+
+updateFavorito:
+    pattern:  /app/updateFavorito/{id_pill}
+    defaults: { _controller: CelmediaPillsBundle:Default:updateFavorito }
+
+
+
+
+
+
+crear_pill:
+    pattern:  /app/crear
+    defaults: { _controller: CelmediaPillsBundle:Pill:crearPill }
+
+
+crear_pill_imagen:
+    pattern:   /app/generate
+    defaults:  { _controller: CelmediaPillsBundle:Pill:uploadImage }
+    
+enviar_correo:
+    pattern:   /app/enviarcorreo
+    defaults:  { _controller: CelmediaPillsBundle:Pill:enviarCorreo }
+
+
+
+
+mostrar_resultados_busquedad_tag:
+    path:      /resultadosTags/{idtag}
+    defaults:  { _controller: CelmediaPillsBundle:Pill:mostrarResultadosTag }
+
+    
+
+mostrar_resultados_busquedad_categoria:
+    path:      /resultadosCategorias/{idcategoria}
+    defaults:  { _controller: CelmediaPillsBundle:Pill:mostrarResultadosCategorias }
+
+
+mostrar_resultados_busquedad_estudio:
+    path:      /resultadosEstudios/{idestudio}
+    defaults:  { _controller: CelmediaPillsBundle:Pill:mostrarResultadosEstudios }
+
+
+
+update_calificacion:
+    path:      /calificar/{id_brief}/{categoria}
+    defaults:  { _controller: CelmediaPillsBundle:Pill:calificarPill }
+
+
+
+mostrarVotacion:
+    path:      /mostrarVotacion
+    defaults:  { _controller: CelmediaPillsBundle:Pill:mostrarVotacion }
+
+
+crear_solo_brief:
+    path:      /crea_brief/{idpill}
+    defaults:  { _controller: CelmediaPillsBundle:Pill:crearBrief }
+
+
+ver_brief:
+    path:      /ver__brief/{idbrief}
+    defaults:  { _controller: CelmediaPillsBundle:Pill:verbrief }
+
+
+
+eliminar_brief:
+    path:      /eliminar_brief/{idbrief}
+    defaults:  { _controller: CelmediaPillsBundle:Pill:eliminarBrief }
+
+
+
+mostrar_estudios:
+    path:      /estudios
+    defaults:  { _controller: CelmediaPillsBundle:Estudio:mostrarEstudios }
+
+crear_estudios:
+    path:      /crear_estudios
+    defaults:  { _controller: CelmediaPillsBundle:Estudio:crearEstudio }
+
+
+ver_estudio:
+    path:      /ver_estudio/{idEstudio}
+    defaults:  { _controller: CelmediaPillsBundle:Estudio:verEstudio }
+
+
+
+
+
+remote_listar_pills:
+    path:      /remote/mostrar/pills/
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:listarPills }
+
+remote_listar_pills:
+    path:      /remote/mostrar/pill/{id_pill}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:mostrarPill }
+
+
+remote_mostrar_pills:
+    path:      /remote/mostrar/pills
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:listarPills }
+
+
+remote_autenticacion:
+    path:      /remote/login/{usuario}/{password}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:login }
+
+#Henry
+celmedia_pills_validar_email:
+    pattern:  /validate
+    defaults: { _controller: CelmediaPillsBundle:Default:validacion }
+
+
+
+
+#Fabricio
+
+modificar_datos_usuario:
+    path:      /modificarDatosUsuario/{usuario}/{passwordactual}/{newpassword}/{nombre}/{apellido}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:modificarDatosUsuario }
+
+#OK
+existe_correo:
+    path:      /existeCorreo/{correo}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:existeCorreo }
+
+verificar_usuario:
+    path:      /verificarUsuario/{correo}/{password}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:verificarUsuario }
+
+#OK
+get_numtruthbrief_recibidos:
+    path:      /getNumTruthBriefRecibidos/{idusuario}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getNumTruthBriefRecibidos }
+
+#OK
+get_pills:
+    path:      /getPills
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getPills }
+
+#OK
+get_truthbriefs_por_usuario:
+    path:      /getTruthBriefsPorUsuario/{idusuario}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getTruthBriefsPorUsuario }
+
+#OK
+get_truthbrief:
+    path:      /getTruthBrief/{idTruthBrief}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getTruthBrief }
+
+crear_truthbrief:
+    path:      /crearTruthBrief/{idTruthBrief}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:crearTruthBrief }
+
+#OK
+get_num_favoritos:
+    path:      /getNumFavoritos/{idPill}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getNumFavoritos }
+
+#OK
+set_favorito:
+    path:      /setFavorito/{idusuario}/{idpill}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:setFavorito }
+
+#OK
+get_total_calificaciones_pillBrief:
+    path:      /getTotalCalificacionesPillBrief/{idPillBrief}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getTotalCalificacionesPillBrief }
+
+#ok
+get_calificaciones_por_usuario:
+    path:      /getCalificacionesPillBriefPorUsuario/{idusuario}/{idPillBrief}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getCalificacionesPillBriefPorUsuario }
+
+eliminar_truthpill:
+    path:      /eliminarTruthPill/{idTruthBrief}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:eliminarTruthPill }
+
+#OK
+get_pills_favoritos:
+    path:      /getPillsFavoritos/{idusuario}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getPillsFavoritos }
+
+#OK
+get_truthbrief_recibidos:
+    path:      /getTruthBriefRecibidos/{idusuario}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getTruthBriefRecibidos }
+
+#OK
+set_calificacion:
+    path:      /setCalificacion/{idusuario}/{idpillbrief}/{calificacion}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:setCalificacion }
+
+enviar_pillbrief:
+    path:      /enviarPillbrief/{idpillbrief}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:enviarPillbrief }
+
+#OK
+buscar_tags:
+    path:      /buscarTags/{tags}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:buscarTags }
+
+#OK
+buscar_categorias:
+    path:      /buscarCategorias/{categorias}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:buscarCategorias }
+
+#OK
+buscar_estudios:
+    path:      /buscarEstudios/{estudios}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:buscarEstudios }
+
+
+eliminar_truth_brief:
+    path:      /eliminarTruthBrief/{idTruthBrief}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:eliminarTruthBrief }
+
+crear_truthbrief_vacio:
+    path:      /crearTruthBrief/{briefing}/{entendimiento}/{emails}/{imagenURL}/{tags}/{idCategoria}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:crearTruthBrief }

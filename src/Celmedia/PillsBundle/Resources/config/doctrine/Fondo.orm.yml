@@ -1,0 +1,23 @@
+Celmedia\PillsBundle\Entity\Fondo:
+    type: entity
+    table: fondo
+    fields:
+        idfondo:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            column: idFondo
+            generator:
+                strategy: IDENTITY
+        imagen:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+        color:
+            type: string
+            length: 45
+            fixed: false
+            nullable: true
+    lifecycleCallbacks: {  }

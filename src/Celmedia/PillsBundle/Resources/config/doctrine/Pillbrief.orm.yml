@@ -1,0 +1,71 @@
+Celmedia\PillsBundle\Entity\Pillbrief:
+    type: entity
+    table: pillbrief
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        idcontacto:
+            type: integer
+            unsigned: false
+            nullable: true
+            column: idContacto
+        entendimiento:
+            type: string
+            length: 140
+            fixed: false
+            nullable: false
+        briefing:
+            type: string
+            length: 140
+            fixed: false
+            nullable: false
+        fechacreacion:
+            type: datetime
+            nullable: false
+            column: fechaCreacion
+        estado:
+            type: integer
+            unsigned: false
+            nullable: false
+                              
+    manyToMany:
+      enviados:
+        targetEntity: User
+        joinTable:
+          name: brief_usuarios
+          joinColumns:
+            pill_id:
+              referencedColumnName: id
+          inverseJoinColumns:
+            usuario_id:
+              referencedColumnName: id
+    manyToOne:     
+        pill:
+            targetEntity: Pill
+            cascade: ["persist", "merge"]
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pill:
+                    referencedColumnName: id
+            orphanRemoval: false
+        usuario:
+            targetEntity: User
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                usuario:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+        calificaciones:
+          targetEntity: Calificacion
+          mappedBy: pillbrief
+          cascade: ["persist", "merge"]
+    lifecycleCallbacks: {  }

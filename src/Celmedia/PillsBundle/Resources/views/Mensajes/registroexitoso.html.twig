@@ -1,0 +1,22 @@
+{%   extends("CelmediaPillsBundle::layoutsms.html.twig") %}
+
+{% block contenido %}
+
+<div class="row-fluid">
+    <div class="span12" style="margin-left:0px;background-color: #FFD800;">
+        <div class="container" style="text-align:center;">
+            <div class="space"></div>  
+            <h1 class="title_white">¡EXCELENTE!</h1>         
+            <img src="{{ asset('img/registro.png') }}" alt="" />
+            <div class="space"></div>  
+            <h4 class="subtitle_white" >Recibiras un email con tu contraseña para que puedas iniciar sesi&oacute;n.</h4>
+            <div class="space"></div>
+            <div class="row-fluid">
+                <div class="span4 offset4 btn btn-default btn_guardar">Volver al Inicio</div>
+            </div>
+            <div class="altura"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

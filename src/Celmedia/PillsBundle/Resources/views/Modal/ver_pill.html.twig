@@ -1,0 +1,36 @@
+
+
+<div class="modal-body">
+	<a class="close cerrar" data-dismiss="modal">
+		<i class="icono icono-cerrar"></i>
+	</a>
+	<div class="row-fluid text-center">
+
+		<img src="{{ asset('uploads/pills/'  ~ pill.imagen ) }}" class="thumb-pill" alt="" />
+
+	</div>
+</div>
+
+<div class="modal-footer">
+
+	<div class="row-fluid">
+		
+		<div class="span2" style="">
+		    <span style="cursor:pointer;" onclick="actualizarFavorito(this , '{{  path('updateFavorito' , {   id_pill: pill.id  } ) }}');"  class="estrellas">
+		    	<i class="icono-reload icono-rl-estrella{% if favorito %}-activo{% endif %}"></i> 
+		      	<!-- <i class="icono icono-estrella"></i> -->
+		    </span>
+		    <p style="margin-top: 8px;font-size: 20px;color: #ABABAB;font-weight: bold;">{{  cantidad_favoritos }}</p>
+		</div>
+		
+		<div class="span4 offset6 text-center">
+            <a href="{{ path('crear_pill') }}" class="btn btn-azul btn_crear">Crear Pill Brief</a>
+        </div>
+		<!-- <button style="padding: 14px;" class="btn btn-default btn-azul">Crear Pill Briefs</button> -->
+
+		
+	</div>
+
+
+
+</div>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <title>{% block title %}Mccan TruthPills!{% endblock %}</title>
+
+
+    {% stylesheets 
+    '@CelmediaPillsBundle/Resources/public/css/bootstrap.css'
+    '@CelmediaPillsBundle/Resources/public/css/bootstrap-responsive.css'
+    '@CelmediaPillsBundle/Resources/public/css/jquery-ui.css'
+    '@CelmediaPillsBundle/Resources/public/css/reset.css'
+    '@CelmediaPillsBundle/Resources/public/css/style.css'
+    '@CelmediaPillsBundle/Resources/public/css/h.css'
+    '@CelmediaPillsBundle/Resources/public/css/*'
+     filter='cssrewrite'    %}
+
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+        <link href='http://fonts.googleapis.com/css?family=Raleway:200,400' rel='stylesheet' type='text/css'>
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container-fluid" style="padding-left:0px;padding-right:0px;">
+        <div class="row-fluid">
+            {% block menuizq %}
+                <div class="span3 menuizq">
+                    <div class="logo">
+                        <img src="{{ asset('img/logo_page.png') }}" alt="" />
+                    </div>
+                    <div class="txt_menu">
+                        <ul class="menu" >
+                            
+                            <li>
+                                <a href="{{ path('app_home') }}"  {% if app.request.get('_route') == 'app_home' %}    style="color: #2EA3F5;" {%endif%}   >Truth Pills</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('mis_pills') }}" {% if app.request.get('_route') == 'mis_pills' %}    style="color: #2EA3F5;" {%endif%}    >Mis Truth Brief</a>
+                            </li>                           
+                            <li>
+                                <a href="{{ path('mis_pills_favoritos') }}" {% if app.request.get('_route')== 'mis_pills_favoritos' %}    style="color: #2EA3F5;" {%endif%}      >Mis Pills Favoritos</a>                                
+                            </li>
+                            <li>
+                                <a href="{{ path('pills_recibidos') }}"  {% if app.request.get('_route')== 'pills_recibidos' %} style="color: #2EA3F5;" {%endif%}   >Truth Brief Recibidos
+                                   
+                                    {{ render(controller('CelmediaPillsBundle:Default:getNotificaciones')) }}
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('resultados_pill') }}"  {% if app.request.get('_route')== 'resultados_pill' %} style="color: #2EA3F5;" {%endif%}  >Estudios</a></li>
+                        </ul>
+                    </div>
+                    <div style="margin-top:80px;"></div>
+                    <div class="img_center">
+                        <img src="{{ asset('img/mc.png') }}" class="mccannlogo" alt="" />
+                        <div class="img_center"></div>
+                        <p class="txt_pie">
+                            <span style="color: #77CFF7;" class="wysiwyg-color-8a8a8a">©&nbsp;</span>
+                            www.maccann.com 2011<br />
+                            Todos los derechos reservados
+                        </p>
+                    </div>
+                    <div style="margin-top:80px;"></div>
+                </div>
+            {% endblock %}
+
+            <div class="span9 lateral" style="margin-left:0px;">
+            <!-- <div class="span9 lateral" style="margin-left:0px;width:76.358974%;"> -->
+
+
+                {% block busqueda %}
+                <div class="row-fluid barra_top text-center" style="padding-bottom: 18px;padding-top: 18px;">
+                    <div class="span6 text-center" id="text-space" style="margin-left: 38px;">
+
+                    <form action="{{   path('buscar') }}"  method="post" style="margin:0px;" >
+                        
+
+
+                        <div class="row-fluid">
+                            <input type="text" class="span12 input-large search-query search" name="text_buscar" onclick="show_busqueda()">
+                        </div>
+
+                        <div id="busqueda" style="display:none;">
+                            <ul class="span12 menu_busqueda" style="position: absolute;">
+                                <li>
+                                    <label class="span11 checkbox inline txt_size">
+                                        Activar búsqueda por tags / Ver todos los tags
+                                    </label>                                        
+                                    <input type="checkbox" id="mini1"   name="buscar_tags" />
+                                </li>
+                                <li>
+                                    <label class="span11 checkbox inline txt_size">
+                                        Activar búsqueda por Categorías / Ver todas las categorías
+                                    </label>                                        
+                                    <input type="checkbox" id="mini2"   name="buscar_categorias"  />
+                                </li>
+                            </ul>
+                        </div>
+
+                    </form>
+                    </div>
+
+                    <div class="span2 offset1 text-center">
+                        <a href="{{ path('crear_pill') }}" class="btn btn-azul btn_crear">Crear Pill Brief</a>
+                    </div>
+                    <div class="span2 text-center">
+
+
+                        <div class="row-fluid" id="tool">
+                            
+                            <div onclick="show_tool()" class="btn btn-tool"></div>
+                            
+                        </div>
+                        
+                        <div id="micuenta" style="display:none;" class="">
+                            <div class="desplegable" style="position:absolute;">
+                                <div class="arrow-up"></div>
+                                <div class="fondo_cuenta">
+                                    <a href="{{ path('mi_cuenta_pill') }}" >
+                                        <div style="border-radius: 3px 3px 3px 3px;" class="btn btn-azul btn_micuenta">Mi cuenta</div>
+                                    </a>
+                                    <a style="color:#fff;" href="{{ path('fos_user_security_logout') }}">Cerrar sesi&oacute;n</a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                        
+
+
+
+                </div>
+                {% endblock %}
+
+
+                {% block contenido %}
+
+                {% endblock %}
+                
+            </div>
+        </div>
+    </div>
+
+
+    {%  block js %}
+        {% javascripts
+        '@CelmediaPillsBundle/Resources/public/js/jquery.js' 
+        '@CelmediaPillsBundle/Resources/public/js/jquery-ui.js' 
+        '@CelmediaPillsBundle/Resources/public/js/bootstrap.min.js'
+        '@CelmediaPillsBundle/Resources/public/js/tag-it.js'
+        '@CelmediaPillsBundle/Resources/public/js/script.js'  %}
+        <script  type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <script  type="text/javascript" src="{{ asset("js/jquery.blockUI.js") }}"></script>
+     {% endblock %}
+
+
+
+    </body>
+</html>

@@ -1,0 +1,264 @@
+{%   extends("CelmediaPillsBundle::frontLayout.html.twig") %}
+{% block menuizq %}
+{% endblock %}
+{% block contenido %}
+{% if app.user %}
+<script>window.location.href = '{{  path('app_home') }}'  ; </script>
+{% endif %}
+<div class="hidden-phone hidden-tablet visible-desktop">
+   <div class="row-fluid" style="margin: 20px 0px 20px 0px;">
+      <div class="span3 offset1">
+         <img src="{{ asset('img/McCann.png') }}" alt="" /> 
+      </div>
+      <div class="span3 offset5">
+         <a  onclick="desplegar_registro()" class="btn btn-large btn-registro" href="#">Reg&iacute;strate</a>
+      </div>
+   </div>
+   <!-- BLOCK REGISTRO -->
+   <div  class="row-fluid" id="form_registrarse" style="background:#F0EEE9;display:none;">
+      <div  class="span6"  id="ingreso"style="margin-top: 16px;margin-bottom: 16px;">
+         <h2 class="title_email">Ingresa tu correo electr&oacute;nico</h2>
+      </div>
+      <div class="span6" id="login_input" >
+         <div class="row-fluid" style="margin-top: 16px;">
+            {#{ form(formRegistro) }#}
+            <form id="formtest">
+               <div id="input" class="span10" >
+                  <div class="input-append">
+                     {#{ form_start(formRegistro) }#}
+                     <input id="input_email" name="correo" class="input-xlarge" type="text" placeholder="nombre@mccann.com" data-placement="top" data-content="Ingrese un dominio Valido de McCann" data-toggle="popover"/>
+                     {#{ form_widget(formRegistro.task, { 'attr': {'class': "input-xlarge", 'placeholder': 'nombre@mccann'} }) }#}
+                     <!-- <div class="btn_enviar btn btn-large">Enviar</div> -->
+                     <button id="subFormtest" class="btn_enviar btn btn-large" type="button">Enviar</button>
+                     {#{ form_widget(formRegistro.Enviar, { 'attr': {'class': "btn_enviar btn btn-large" } }) }#}
+                     {#{ form_end(formRegistro) }#} 
+                  </div>
+               </div>
+            </form>
+            <div id="x" class="span2" style="cursor:pointer;margin-top: 11px;" onclick="desplegar_registro()">
+            </div>
+         </div>
+      </div>
+      <div class="span6" id="emailcorrecto"  style="display:none;">
+         <div class="row" style="margin-top:16px;">
+            <div class="span12">
+               <h2 class="title_email">Enviado</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- FIN -->
+   <!-- BLOCK INICIAR SESION -->
+   <div class="jumbotron" style="background:#EBFCFF;">
+      <div class="container-fluid">
+         <div class="row-fluid">
+            <div class="span5 offset1">
+               <img src="{{ asset('img/pillbrief.png') }}" alt="" />
+            </div>
+            <div class="span4 contenedor-centrar">
+               <!-- <div class="central" style="display: table;">
+                  <div class="central1" style="display: table-row; height: 669px;">
+                    <div class="central2" style="display: table-cell; vertical-align: middle;"> -->
+                     <div class="row-fluid" id="welcome">
+                        <h1 class="titulo_bienvenida">BIENVENIDOS</h1>
+                        <p class="lead justificado">Inicia sesión para poder leer y compartir los Pills con tus compañeros de McCann Worldgroup.</p>
+                        <div class="span12 btn btn-large btn-login" onclick="mostrar_ingreso()" href="#" style="margin-left: 0px;height: 60px;line-height: 40px;">
+                           Iniciar Sesi&oacute;n
+                        </div>
+                     </div>
+                     <div class="span4" id="form_ingreso" style="">
+                        <p style="text-align:justify;">Pueden ingresar únicamente los usuarios que tengan el correo electrónico de McCann Worlgroup.</p>
+                        <form id="loginForm" class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post" >
+                           <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.generateCsrfToken('authenticate') }}" />
+                           <div class="control-group">
+                              <input class="span12" name="_username" required="required"  type="text" id="inputEmail" placeholder="nombre@maccann.com">
+                           </div>
+                           <div class="control-group">
+                              <input class="span12" type="password"  name="_password" required="required" id="inputPassword" placeholder="Contraseña">
+                           </div>
+                           <div class="control-group">
+                              <div class="span12 btn btn-large btn-ingresar"  onclick="$('#loginForm').submit();" >Ingresar</div>
+                           </div>
+                           <div class="control-group">
+                              <a href="#myModal" data-toggle="modal" >¿Olvidaste tu contraseña?</a>
+                           </div>
+                        </form>
+                     </div>
+                     <!-- Modal -->
+                     <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding:15px;">
+                        <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                           <h3 id="myModalLabel" style="font-size: 16.5px;color: #2EA4F5;">¿Has olvidado tu contraseña?</h3>
+                           <p style="color: #ABABAB;">Por favor, ingrese su correo electronico.</p>
+                        </div>
+                        <form class="form-horizontal">
+                           <div class="control-group">
+                              <input class="span12" type="text" id="Email" placeholder="nombre@maccann.com">
+                           </div>
+                           <div class="control-group">
+                              <a href="#">
+                                 <div class="span12 btn btn-large btn-enviar">Enviar</div>
+                              </a>
+                           </div>
+                        </form>
+                     </div>
+                     <!-- Modal -->
+               <!-- </div>
+                  </div>
+               </div> -->
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- FIN -->
+   <div class="row-fluid">
+      <div class="span6">
+         <div class="span6 offset3 descarga_top" >
+            <h2 class="title_login">Descarga</h2>
+            <p class="txt_app">La nueva app para iPhone</p>
+            <div class="span11 descarga" style="margin-left:0px;cursor:pointer;">
+               Descargar
+            </div>
+         </div>
+      </div>
+      <div class="span6">
+         <div class="span9 offset3 tablet">
+            <img src="{{ asset('img/Dispositivos.png') }}" alt="" />    
+         </div>
+      </div>
+   </div>
+   <div class="footer" style="text-align:center;">
+      <p class="txt_principal" >© www.mccann.com 2011 | Todos los derechos reservados</p>
+   </div>
+</div>
+<div class="hidden-desktop visible-tablet visible-phone">
+   <div class="row-fluid" style="margin: 20px 0px 20px 0px;">
+      <div class="span12">
+         <img class="top-img" src="{{ asset('img/McCann.png') }}" alt="McCann" />
+         <a onclick="desplegar_registro_movil()" class="btn btn-large-m btn-registro derecha" href="#">Reg&iacute;strate</a>
+      </div>
+   </div>
+   <!-- Info de Registrarse -->
+   <div id="form_registrarse_m" class="row-fluid" style="background:#F0EEE9;display:none;text-align:center;">
+      <div id="ingreso" class="span6" style="margin-top: 16px;margin-bottom: 16px;">
+         <h2 class="title_email">Ingresa tu correo electr&oacute;nico</h2>
+      </div>
+      <div class="input-append">
+         <input id="input_email" class="input-xlarge" type="text" placeholder="nombre@maccann.com" style="height:48px;" />
+         <button style="margin-top:0px;" class="btn_enviar_m btn btn-large-m" type="button">Enviar</button>
+         <div id="x" class="span2" style="cursor:pointer;height:48px;margin-left:15px; width:48px;" onclick="desplegar_registro_movil()">
+         </div>
+      </div>
+   </div>
+   <!-- FIN -->
+   <div class="jumbotron" style="background:#EBFCFF;">
+      <div class="container-fluid">
+         <div class="row-fluid">
+            <div class="span5 offset1">
+               <div>
+                  <img src="{{ asset('img/pillbrief.png') }}" alt="" />    
+               </div>
+            </div>
+            <div class="span4 cuadro_bienvenida">
+               <div class="row-fluid">
+                  <h1 class="titulo_bienvenida_m">BIENVENIDOS</h1>
+                  <p class="lead justificado">Inicia sesión para poder leer y compartir los Pills con tus compañeros de McCann Worldgroup.</p>
+                  <div class="span12 btn btn-large btn-login-m" onclick="mostrar_ingreso_m()" style="height: 60px;line-height: 40px;margin-left: 0px;">
+                     Iniciar Sesi&oacute;n
+                  </div>
+               </div>
+               <div class="span12" id="form_ingreso_m" style="display:none;border: 1px solid #dedede;background: #fff;padding: 24px;margin-left: 0px;color:#AAAAAA;font-size: 15px;z-index:999;position: relative;">
+                  <p>Pueden ingresar únicamente los usuarios que tengan el correo electrónico de McCann Worlgroup.</p>
+                  <form id="loginFormMobile" class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post" >
+                     <div class="control-group">
+                        <input class="span12" name="_username" required="required"  type="text" id="inputEmail" placeholder="nombre@maccann.com">
+                     </div>
+                     <div class="control-group">
+                        <input class="span12" type="password"  name="_password" required="required" id="inputPassword" placeholder="Contraseña">
+                     </div>
+                     <div class="control-group">
+                        <div class="span12 btn btn-large btn-ingresar"  onclick="$('#loginFormMobile').submit();" >Ingresar</div>
+                     </div>
+                     <div class="control-group">
+                        <a href="#myModalmovil" data-toggle="modal" >¿Olvidaste tu contraseña?</a>
+                     </div>
+                  </form>
+               </div>
+               <!-- Modal -->
+               <div id="myModalmovil" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding:15px;">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                     <h3 id="myModalLabel" style="font-size: 16.5px;color: #2EA4F5;">¿Has olvidado tu contraseña?</h3>
+                     <p style="color: #ABABAB;">Por favor, ingrese su correo electronico.</p>
+                  </div>
+                  <form class="form-horizontal">
+                     <div class="control-group">
+                        <input class="span12" type="text" id="Email" placeholder="nombre@maccann.com">
+                     </div>
+                     <div class="control-group">
+                        <a href="#">
+                           <div class="span12 btn btn-large btn-enviar">Enviar</div>
+                        </a>
+                     </div>
+                  </form>
+               </div>
+               <!-- Modal -->
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="row-fluid">
+      <div class="span6">
+         <div class="descarga_top-m" >
+            <h2 class="title_login">Descarga</h2>
+            <p class="txt_app">La nueva app para iPhone</p>
+            <div class="span6 descarga" style="margin-left:0px;cursor:pointer;">Descargar</div>
+         </div>
+         <div class="tablet-m">
+            <img src="{{ asset('img/Dispositivos.png') }}" alt="" />    
+         </div>
+      </div>
+   </div>
+   <div class="footer" style="text-align:center;">
+      <p class="txt_principal" >© www.mccann.com 2011 | Todos los derechos reservados</p>
+   </div>
+</div>
+<script type="text/javascript">
+function aButtonPressed(){
+   var correo =$('#input_email').val();
+   $.post('{{path('celmedia_pills_validar_email')}}',               
+     {data1:correo}, 
+     function(response){
+                    if(response.code == 100 && response.success){//dummy check
+                      //do something
+                      $("#login_input").hide();
+                      $("#emailcorrecto").show();
+                   } if(response.code == 400 ){
+                     $("#login_input").hide();
+                     $("#input_email").popover('show');
+                     // $("#emailcorrecto").find('.title_email').text("Por favor ingrese un correo");
+                      $("#emailcorrecto").show();
+                  } 
+                  if(response.code == 300){
+                      // $("#login_input").hide();
+                      $("#input_email").popover('show');
+                      // $("#emailcorrecto").find('.title_email').text("Por favor ingrese un correo de dominio mccann");
+                      // $("#emailcorrecto").show();
+                  }
+               }, "json");
+
+}
+
+// $(document).ready(function() {     
+// });
+ 
+</script>
+{% endblock %}
+
+
+{%  block js %}
+{{ parent() }}
+
+
+
+{% endblock %}

@@ -1,0 +1,34 @@
+
+
+<div class="ico span2 offset1" style="cursor:pointer;"  
+     onclick="$('#votaciones').load( '{{ path('update_calificacion' , { 'id_brief': brief.id , 'categoria' : 'invisible'}) }}'  );" >
+	<div  
+	style="background-image: url(/Pills/web/img/iconos.png);background-repeat: no-repeat;background-position: 17px 0px;width: 43px;height: {{  votos['invisible'] }}px;position: absolute;"></div>
+	<i class="icono icono-corazon-invisible"></i>
+	<span class="icotext">Invisible</span>
+</div>
+
+
+<div class="ico span2" style="cursor:pointer;" 
+     onclick="$('#votaciones').load( '{{ path('update_calificacion' , { id_brief: brief.id , categoria : 'cliche'}) }}'  );" >
+	<div style="background-image: url(/Pills/web/img/iconos.png);background-repeat: no-repeat;background-position: 15px -27px;width: 43px;height: {{  votos['cliche'] }}px;position: absolute;"></div> 
+	<i class="icono icono-corazon-cliche"></i>
+	<span class="icotext">Cliché</span>
+</div>
+
+
+<div class="ico span2" style="cursor:pointer;" 
+     onclick="$('#votaciones').load( '{{ path('update_calificacion' , { id_brief: brief.id , categoria : 'inspirador'}) }}'  );">
+	<div style="background-image: url(/Pills/web/img/iconos.png);background-repeat: no-repeat;background-position: 16px -55px;width: 43px;height: {{  votos['inspirador'] }}px;position: absolute;"></div>
+	<i class="icono icono-corazon-inspirador"></i>
+	<span class="icotext">Inspirador</span>
+</div>
+
+
+<div class="ico span3" style="cursor:pointer;" 
+     onclick="$('#votaciones').load( '{{ path('update_calificacion' , { id_brief: brief.id , categoria : 'revolucionario'}) }}'  );" >
+	<div style="background-image: url(/Pills/web/img/iconos.png);background-repeat: no-repeat;background-position: 35px -84px;width: 58px;height: {{  votos['revolucionario'] }}px;position: absolute;"></div>
+	<i class="icono icono-corazon-revolucionario"></i>
+	<span class="icotext">Revolucionario</span>
+</div>
+

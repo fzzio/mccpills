@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block css %}
+
+     {% stylesheets 
+    '@CelmediaPillsBundle/Resources/public/css/bootstrap.css'
+    '@CelmediaPillsBundle/Resources/public/css/bootstrap-responsive.css'
+    '@CelmediaPillsBundle/Resources/public/css/reset.css'
+    '@CelmediaPillsBundle/Resources/public/css/style.css'
+    '@CelmediaPillsBundle/Resources/public/css/h.css'
+     filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+
+    {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container-fluid" style="padding-left:0px;padding-right:0px;">
+            <div class="row-fluid">
+
+
+                <div class="span12" style="margin-left:0px;">
+
+
+
+                {% block contenido %}
+
+                {% endblock %}
+
+                </div>
+
+            </div>
+        </div>
+    {% block js %}
+    {% javascripts
+    '@CelmediaPillsBundle/Resources/public/js/jquery.js' 
+    '@CelmediaPillsBundle/Resources/public/js/bootstrap.min.js'
+    '@CelmediaPillsBundle/Resources/public/js/script.js'  %}
+        <script  type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% endblock %}        
+    </body>
+</html>

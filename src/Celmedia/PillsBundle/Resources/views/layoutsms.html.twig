@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block css %}
+
+    {% stylesheets '@CelmediaPillsBundle/Resources/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            {% block contenido %}
+
+            {% endblock %}
+        </div>
+    </div>
+    {% block js %}
+    {% javascripts
+    '@CelmediaPillsBundle/Resources/public/js/jquery.js' 
+    '@CelmediaPillsBundle/Resources/public/js/bootstrap.min.js'
+    '@CelmediaPillsBundle/Resources/public/js/script.js'  %}
+    <script  type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% endblock %}        
+</body>
+</html>

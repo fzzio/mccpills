@@ -1,0 +1,20 @@
+Celmedia\PillsBundle\Entity\AuthCode:
+    type: entity
+    table: user_auth_code
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        client:
+            targetEntity: Client
+            nullable: false
+
+        user:
+            targetEntity: User
+
+    lifecycleCallbacks: {  }

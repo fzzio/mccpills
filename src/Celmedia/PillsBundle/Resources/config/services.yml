@@ -1,0 +1,7 @@
+parameters:
+#    celmedia_pills.example.class: Celmedia\PillsBundle\Example
+
+services:
+#    celmedia_pills.example:
+#        class: %celmedia_pills.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

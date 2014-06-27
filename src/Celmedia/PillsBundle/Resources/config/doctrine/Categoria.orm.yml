@@ -1,0 +1,33 @@
+Celmedia\PillsBundle\Entity\Categoria:
+    type: entity
+    table: categoria
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nombre:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false
+        descripcion:
+            type: string
+            length: 250
+            fixed: false
+            nullable: false
+
+        estado:
+            type: integer
+            unsigned: false
+            nullable: false
+
+    estado:
+        type: integer
+        unsigned: false
+        nullable: false
+
+    lifecycleCallbacks: {  }

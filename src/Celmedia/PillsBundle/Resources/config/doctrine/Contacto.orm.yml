@@ -1,0 +1,20 @@
+Celmedia\PillsBundle\Entity\Contacto:
+    type: entity
+    table: contacto
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        usuario:
+            type: integer
+            unsigned: false
+            nullable: true
+        pillbrief:
+            type: integer
+            unsigned: false
+            nullable: true
+    lifecycleCallbacks: {  }

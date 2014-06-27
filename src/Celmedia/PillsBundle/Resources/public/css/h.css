@@ -1,0 +1,82 @@
+.paginacion{
+    display: none;
+}
+
+.input_pills{
+    /*background-color: red;*/ 
+}
+
+select.input_pills{
+    /*background-color: red;*/ 
+    height: 57px;
+    border-radius: 2px;
+}
+
+/*yc comente!!*/
+/*.title {
+    padding-left: 0px;
+}*/
+
+
+.form-horizontal .controls {
+    margin-left: 0px;
+    border-radius: 10px;
+}
+
+.input_pills_full{
+    width: 100%;
+}
+
+.btn-pills{
+    background-color: #363636;
+    background-image: none;
+    background-repeat: repeat-x;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding: 4px 12px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 5px;
+    padding: 20px 40px;
+    border-width: 0px;
+}
+
+.btn-pills-back {
+    background-color: #363636;   
+}
+
+.btn-pills-next {
+    background-color: #2E97F2;   
+}
+
+.control-group > h4 {
+    margin-bottom: 0px;
+    font-family: Raleway;
+    color: #666666;
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.control-group > label {
+    margin-bottom: 0px;
+    font-family: Raleway;
+    color: #666666; 
+    font-weight: 100;
+}
+
+#formCrearPill{
+    /*padding-left: 30px;*/
+}
+
+.tagit-label{
+    line-height: 45px;
+}
+
+ul.tagit li.tagit-choice {
+    height: 45px;
+    border-radius: 3px;
+}

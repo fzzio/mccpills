@@ -1,0 +1,120 @@
+{%   extends("CelmediaPillsBundle::layout.html.twig") %}
+
+{%   block js  %}
+{{ parent() }}
+
+
+
+
+
+<script type="text/javascript" >
+
+ 
+
+
+
+
+    function showPaso2() {
+    $("#CrearPillPaso1").hide();
+            $("#CrearPillPaso2").show();
+            $("#crearPrevBtn").attr('onclick', "showPaso1()");
+            $("#crearNextBtn").attr('onclick', "$('#formCrearPill').submit()");
+    }
+
+   
+
+
+
+    $(document).ready(function(){
+
+
+
+            $("#form_tags").tagit({
+    availableTags: [
+        {% for tag in tags %}
+    "{{  tag.nombre }}"   {% if not loop.last %}, {% endif %}
+        {% endfor %}
+    ]
+    });
+            $("#form_equipodetrabajo").tagit({
+    availableTags: [
+        {% for usuario in usuarios %}
+
+        {% if  app.user.username == usuario.email %}
+
+        {% else %}
+    "{{  usuario.email }}"   {% if not loop.last %}, {% endif %}
+        {% endif %}
+        {% endfor %}
+    ]
+    });
+            $("#form_equipodetrabajo").hide();
+  
+   
+            });</script>
+
+{%   endblock  %}
+
+{% block contenido %}
+<div class="row-fluid">
+
+
+    <h1 class="title">Pill</h1>
+
+    <div  class="span1 hidden-phone" ></div>
+    <div class="span11" style="margin-left:0px;">
+
+
+        <form id="formCrearPill" class="form-horizontal" action="{{  path('crear_solo_brief',{idpill: idpill }) }}" method="post" {{ form_enctype(form) }}>
+
+
+       
+
+            <div  id="CrearPillPaso2"   >
+
+                <div class="control-group">
+                    <h4>Entendimiento</h4>
+                    <label>El punto de vista o interpretación de por qué el Pill es el punto de partida.</label>
+                    <div class="controls">
+            {{ form_widget(form.entendimiento, { 'attr': {'class': "span12 texto-area", 'rows': 4} }) }}
+
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <h4>Briefing</h4>
+                    <label>Cómo el Truth Pill y el Entedimiento se convierte en una propuesta para la marca.</label>
+                    <div class="controls">
+            {{ form_widget(form.briefing, { 'attr': {'class': "span12 texto-area", 'rows': 4} }) }}
+
+                    </div>
+                </div>
+                <div class="control-group">
+                    <h4>Equipo de trabajo</h4>
+                    <label>Separa los correos electronicos con comas y sin espacios.</label>
+                    <div class="controls">
+            {{ form_widget(form.equipodetrabajo, { 'attr': {'class': "span12 texto-area tags_correos"} }) }}
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="row-fluid">                    
+               
+            <button id="crearNextBtn" class="btn-pills btn-pills-next pull-right"  onclick="$('#formCrearPill').submit();" type="button">Crear</button> 
+            </div>
+
+{{ form_widget(form._token) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

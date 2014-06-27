@@ -1,0 +1,21 @@
+Celmedia\PillsBundle\Entity\RefreshToken:
+    type: entity
+    table: user_refresh_token
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+
+    manyToOne:
+        client:
+            targetEntity: Client
+            nullable: false
+
+        user:
+            targetEntity: User
+
+    lifecycleCallbacks: {  }

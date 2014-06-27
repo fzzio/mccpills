@@ -1,0 +1,21 @@
+Celmedia\PillsBundle\Entity\Tag:
+    type: entity
+    table: tag
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        nombre:
+            type: string
+            length: 45
+            fixed: false
+            nullable: false 
+        estado:
+            type: integer
+            unsigned: false
+            nullable: false            
+    lifecycleCallbacks: {  }

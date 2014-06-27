@@ -1,0 +1,35 @@
+Celmedia\PillsBundle\Entity\Pillcat:
+    type: entity
+    table: pillcat
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        estado:
+            type: integer
+            unsigned: false
+            nullable: true
+    manyToOne:
+        pill:
+            targetEntity: Pill
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pill:
+                    referencedColumnName: id
+            orphanRemoval: false
+        categoria:
+            targetEntity: Categoria
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                categoria:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

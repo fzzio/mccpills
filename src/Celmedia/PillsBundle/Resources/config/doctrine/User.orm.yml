@@ -1,0 +1,14 @@
+Celmedia\PillsBundle\Entity\User:
+    type: entity
+    table: user_pills
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+                
+       
+    lifecycleCallbacks: {  }

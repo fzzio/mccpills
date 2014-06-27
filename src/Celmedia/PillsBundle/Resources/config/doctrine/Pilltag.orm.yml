@@ -1,0 +1,39 @@
+Celmedia\PillsBundle\Entity\Pilltag:
+    type: entity
+    table: pilltag
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        fechacreacion:
+            type: datetime
+            nullable: false
+            column: fechaCreacion
+        estado:
+            type: integer
+            unsigned: false
+            nullable: false
+    manyToOne:
+        tag:
+            targetEntity: Tag
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                tag:
+                    referencedColumnName: id
+            orphanRemoval: false
+        pilll:
+            targetEntity: Pill
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pilll:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

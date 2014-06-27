@@ -1,0 +1,21 @@
+Celmedia\PillsBundle\Entity\AccessToken:
+    type: entity
+    table: user_access_token
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+
+    manyToOne:
+        client:
+            targetEntity: Client
+            nullable: false
+
+        user:
+            targetEntity: User
+
+    lifecycleCallbacks: {  }

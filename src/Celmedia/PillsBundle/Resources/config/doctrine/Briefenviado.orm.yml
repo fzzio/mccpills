@@ -1,0 +1,39 @@
+Celmedia\PillsBundle\Entity\Briefenviado:
+    type: entity
+    table: briefenviado
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+        fechaenvio:
+            type: date
+            nullable: false
+            column: fechaEnvio
+        estado:
+            type: integer
+            unsigned: false
+            nullable: false
+    manyToOne:
+        usuario:
+            targetEntity: User
+            cascade: ["persist", "merge"]
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                usuario:
+                    referencedColumnName: id
+            orphanRemoval: false
+        pillbrief:
+            targetEntity: Pillbrief
+            cascade: ["persist", "merge"]
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pillbrief:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

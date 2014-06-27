@@ -1,0 +1,64 @@
+{%   extends("CelmediaPillsBundle::layout.html.twig") %}
+ 
+
+{% block contenido %}
+<div class="row-fluid">
+
+
+    <h1 class="title">Pill</h1>
+
+    <div  class="span1 hidden-phone" ></div>
+    <div class="span11" style="margin-left:0px;">
+
+
+        <form id="formCrearPill" class="form-horizontal" action="#" method="post" {{ form_enctype(form) }}>
+
+
+       
+
+            <div  id="CrearPillPaso2"   >
+
+                <div class="control-group">
+                    <h4>Titulo de estudio</h4>                
+                    <div class="controls">
+            {{ form_widget(form.nombre, { 'attr': {'class': "span12 texto-area", 'rows': 4} }) }}
+
+                    </div>
+                </div>
+
+
+                <div class="control-group">
+                    <h4>Contenido</h4>
+                    <label>la informacion del que trata el estudio.</label>
+                    <div class="controls">
+            {{ form_widget(form.descripcion, { 'attr': {'class': "span12 texto-area", 'rows': 4} }) }}
+
+                    </div>
+                </div>
+
+                
+                 <div class="control-group">
+                    <div class="controls">
+        {{ form_widget(form.categorias, { 'attr': {'class': "input_pills"} }) }}
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="row-fluid">                    
+               
+            <button id="crearNextBtn" class="btn-pills btn-pills-next pull-right"  onclick="$('#formCrearPill').submit();" type="button">Crear</button> 
+            </div>
+
+{{ form_widget(form._token) }}
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

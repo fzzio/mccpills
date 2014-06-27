@@ -1,0 +1,35 @@
+Celmedia\PillsBundle\Entity\Calificacion:
+    type: entity
+    table: calificacion
+    fields:
+        id:
+            id: true
+            type: integer
+            unsigned: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+
+        fechaCreacion:
+            type: date
+            nullable: false            
+        tipo:
+            type: string
+            nullable: false
+
+        estado:
+            type: integer
+            unsigned: false 
+        usuario:
+            type: integer
+            unsigned: false 
+    manyToOne:      
+        pillbrief:
+            targetEntity: Pillbrief
+            cascade: ["persist", "merge"]           
+            inversedBy: calificaciones
+            joinColumns:
+                pillbrief:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

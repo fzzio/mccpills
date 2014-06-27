@@ -1,0 +1,69 @@
+{%   extends("CelmediaPillsBundle::layout.html.twig") %}
+
+{% block contenido %}
+
+{# modal de mostrar pills   #}
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"  >
+   <div  id="modalContent" >
+      <div class="">
+         <a class="close cerrar" data-dismiss="modal">
+         <i class="icono icono-cerrar"></i>
+         </a>
+         <div class="row-fluid text-center">
+            <div class="row-fluid text-center">
+               <img src="{{ asset('img/cargando.png'   ) }}" class="thumb-pill" alt="" />
+            </div>
+         </div>
+         <div class="modal-footer">
+            <span class="estrellas"><i class="icono icono-estrella"></i>0</span>
+            <button id="btn-pillfavorito" onclick="actualizarFavorito(this);" 
+               style="padding: 8px 35px;" 
+               class="btn btn-large btn-default btn-pillfavorito ">
+            <i class="icono icono-estrella"></i> Favorito</button>
+            <button style="padding: 14px;" class="btn btn-default btn-azul">Crear Pill Briefs</button>
+         </div>
+      </div>
+   </div>
+</div>
+{# fin modal de mostrar pills   #}
+
+
+<div class="row-fluid">
+   <div class="span12" style="margin-left:0px;">
+      <div class="">
+         <div class="row-fluid">
+            <div class="span12" style="margin-left:0px;">
+               <div class="container-fluid">
+                  <h1 class="title">Pills Favoritos</h1>
+                  {% for row  in favoritos | batch(4) %}
+                  <div class="row-fluid row-pills       {% if loop.index > 2 %} paginacion {% endif %} ">
+                     {% for fav in row %}
+                     <div class="span3">
+                        <div class="img-pill"    >
+                           <a  href="{{ path('ver_detalle_pill_por_id' , {idpill: fav.pill.id }) }}" data-toggle="modal" data-target="#myModal" >
+                              <img src="{{ asset('uploads/pills/' ~ fav.pill.imagen ) }}" alt="" class="img-polaroid"  />
+                              <div class="captionpill"  style="top:0px;" >
+                                 <h3>Ver Pill</h3>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                     {% endfor %}
+                  </div>
+                  {% endfor %}
+                  <div class="row-fluid">
+                     <div class="img_center"  id="verMasPills" >
+                        <div class="span6 offset3 btn btn-default btn_mas"  onclick=" $('.paginacion:first').show('slow') "   >Ver m&aacute;s Truth Pills</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="row-fluid" style="height: 40px;"></div>
+
+
+{% endblock %}
