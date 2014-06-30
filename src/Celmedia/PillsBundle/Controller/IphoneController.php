@@ -364,6 +364,102 @@ class IphoneController extends Controller
 	}
 
 
+	public function getPillsNumFavoritos(){
+		$em = $this->getDoctrine()->getManager();
+		$pills = $em->getRepository('CelmediaPillsBundle:Pill')->findBy(array("estado" => 1 ));
+
+		$json = array();
+		$elemento = array();
+		
+		if( $pills ){
+
+			$arrayPills = array();
+			$totalFavorito = 0;
+			foreach ($pills as $pill) {
+				$totalFavoritos = count( $em->getRepository('CelmediaPillsBundle:Favorito')->findBy(array("pill" => $pill )) );
+
+				$pillBasico = array(
+					'id' => $pill->getId(),
+					'usuario' => $pill->getUsuario()->getId(), 
+					'estudio' => $pill->getEstudio()->getId(), 
+					'descripcion' => $pill->getDescripcion(), 
+					'imagen' => $pill->getImagen(), 
+					'fechaCreacion' => $pill->getFechaCreacion()->format('Y-m-d H:i:s'),
+					'estado' => $pill->getEstado(),
+					'cantidadFavoritos' => $totalFavoritos
+				);
+
+
+				array_push($arrayPills, $pillBasico);
+			}
+			
+			$elemento["codigo"] = "1";
+			$elemento["mensaje"] = "Pills listados";
+			$elemento["pills"] = $arrayPills;
+
+
+				
+			$elemento["codigo"] = "1";
+			$elemento["mensaje"] = "Pills encontrados";
+			$elemento["totalFavoritos"] = count($pills);
+			
+		}else{
+			$elemento["codigo"] = "0";
+			$elemento["mensaje"] = "Usuario incorrecto, no se listaron pills.";
+			
+		}
+		$json[] = $elemento;
+
+		$response = new Response(json_encode( $json  ));
+		$response->headers->set('Content-Type', 'application/json');
+
+		return $response;
+	}
+
+	public function getPillPorUsuarioAction($idusuario, $idpill){
+		$em = $this->getDoctrine()->getManager();
+		$usuario = $em->getRepository('CelmediaPillsBundle:User')->findOneBy(array("id" => $idusuario ));
+		$pill = $em->getRepository('CelmediaPillsBundle:Pill')->findOneBy(array("id" => $idpill, "estado" => 1 ));
+
+		$json = array();
+		$elemento = array();
+		
+		if( $usuario && $pill  ){
+
+			
+			$favorito = $em->getRepository('CelmediaPillsBundle:Favorito')->findBy(array("pill" => $pill, "usuario" => $usuario )) ;
+			$favoritos = $em->getRepository('CelmediaPillsBundle:Favorito')->findBy(array("pill" => $pill)) ;
+
+			$pillBasico = array(
+				'id' => $pill->getId(),
+				'usuario' => $pill->getUsuario()->getId(), 
+				'estudio' => $pill->getEstudio()->getId(), 
+				'descripcion' => $pill->getDescripcion(), 
+				'imagen' => $pill->getImagen(), 
+				'fechaCreacion' => $pill->getFechaCreacion()->format('Y-m-d H:i:s'),
+				'estado' => $pill->getEstado(),
+				'esFavorito' => ($favorito) ? true : false,
+				'totalFavoritos' => count($favoritos)
+			);
+			
+			$elemento["codigo"] = "1";
+			$elemento["mensaje"] = "Pill encontrado";
+			$elemento["pill"] = $pillBasico;
+			
+		}else{
+			$elemento["codigo"] = "0";
+			$elemento["mensaje"] = "Usuario o pill incorrecto.";
+			
+		}
+		$json[] = $elemento;
+
+		$response = new Response(json_encode( $json  ));
+		$response->headers->set('Content-Type', 'application/json');
+
+		return $response;
+	}
+
+
 	
 	public function getPillsFavoritosAction($idusuario){
 		$em = $this->getDoctrine()->getManager();

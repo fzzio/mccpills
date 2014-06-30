@@ -223,6 +223,15 @@ get_pills:
     path:      /getPills
     defaults:  { _controller: CelmediaPillsBundle:Iphone:getPills }
 
+get_pills_num_favoritos:
+    path:      /getPillsNumFavoritos
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getPillsNumFavoritos }
+
+get_pill_por_usuario:
+    path:      /getPillPorUsuario/{idusuario}/{idpill}
+    defaults:  { _controller: CelmediaPillsBundle:Iphone:getPillPorUsuario }
+
+
 #OK
 get_truthbriefs_por_usuario:
     path:      /getTruthBriefsPorUsuario/{idusuario}
